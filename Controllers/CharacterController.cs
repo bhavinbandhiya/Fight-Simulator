@@ -4,27 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
     {
-        private static List<Character> characters = new List<Character>{
-            new Character(),
-            new Character{ID=1, Name = "Sam"} 
-        };   
         
+        private readonly ICharacterService _characterService;
+        public CharacterController(ICharacterService characterService)
+        {
+            _characterService = characterService;
+        }
+ 
         [HttpGet("GetAll")]
         public ActionResult <List<Character>> Get()
         {
-            return Ok(characters);
+            return Ok(_characterService.GetAllCharacters());
         }
 
-         [HttpGet("{id}}")]
+         [HttpGet("{id}")]
         public ActionResult <List<Character>> GetSingle(int id)
         {
-            return Ok(characters.FirstOrDefault(c => c.ID == id));
+            return Ok(_characterService.GetCharacterById(id));
+        }
+
+        [HttpPost]
+        public ActionResult<List<Character>> AddCharacter(Character newCharacter){
+            return Ok(_characterService.AddCharacter(newCharacter));
         }
     }
 }

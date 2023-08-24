@@ -9,4 +9,4 @@ namespace WebApi.Models
         Mage = 2,
         Cleric = 3
     }
-}
+}  
