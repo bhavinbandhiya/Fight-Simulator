@@ -1,5 +1,6 @@
 global using WebApi.Models;
 global using WebApi.Services.CharacterService;
+global using WebApi.Dtos.Character; 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
