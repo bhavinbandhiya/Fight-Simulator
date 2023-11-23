@@ -10,7 +10,9 @@ namespace WebApi.Models
         public int id { get; set; }
         public string Username { get; set; } = string.Empty;
         public int MyProperty { get; set; }
-        public byte[] Password { get; set; } = new byte[0];
+        public byte[] PasswordHash { get; set; } = new byte[0];
         public byte[] PasswordSalt { get; set; } = new byte[0];
+
+        public List<Character>? Characters { get; set; } 
     }
 }
