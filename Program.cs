@@ -3,12 +3,15 @@ global using WebApi.Services.CharacterService;
 global using WebApi.Dtos.Character; 
 global using Microsoft.EntityFrameworkCore;
 global using WebApi.Data;
+global using WebApi.Dtos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using WebApi.Services.WeaponService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +48,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IWeaponService, WeaponService>();
 
 var app = builder.Build();
 

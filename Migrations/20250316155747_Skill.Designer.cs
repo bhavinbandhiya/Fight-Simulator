@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Data;
 
@@ -11,9 +12,11 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250316155747_Skill")]
+    partial class Skill
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,26 +95,6 @@ namespace WebApi.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Damage = 30,
-                            Name = "Fireball"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Damage = 50,
-                            Name = "Blizzard"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Damage = 100,
-                            Name = "Earthquake"
-                        });
                 });
 
             modelBuilder.Entity("WebApi.Models.User", b =>
